@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:joblookup/models/job_status.dart';
 part 'job_model.freezed.dart';
 part 'job_model.g.dart';
 
@@ -14,6 +15,7 @@ class JobModel with _$JobModel {
     String? website,
     String? business,
     required DateTime appliedDate,
+    String? status,
   }) = _JobModel;
 
   factory JobModel.fromJson(Map<String, dynamic> json) =>

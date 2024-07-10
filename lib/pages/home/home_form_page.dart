@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:joblookup/models/job_status.dart';
 import 'package:path/path.dart' as p;
 
 import 'package:fluent_ui/fluent_ui.dart';
@@ -155,15 +156,6 @@ class _HomeBodyState extends State<HomeBody> {
                     _positionController.text.isNotEmpty &&
                     selected != null) {
                   // printing all the text
-                  print("Position: ${_positionController.text}");
-                  print("Job Post: ${_jobPostController.text}");
-                  print("Salary: ${_salaryController.text}");
-                  print("Description: ${_descriptionController.text}");
-                  print("Company Name: ${_companyNameController.text}");
-                  print("Address: ${_addressController.text}");
-                  print("Website: ${_websiteController.text}");
-                  print("Business: ${_businessController.text}");
-                  print("Applied Date: $selected");
                   final JobModel job = JobModel(
                     position: _positionController.text,
                     jobPost: _jobPostController.text,
@@ -174,6 +166,7 @@ class _HomeBodyState extends State<HomeBody> {
                     website: _websiteController.text,
                     business: _businessController.text,
                     appliedDate: selected!,
+                    status: JobStatus.applied.toString(),
                   );
                   showContentDialog(context, job);
                 } else {
@@ -239,7 +232,8 @@ class _HomeBodyState extends State<HomeBody> {
                     }
                     final db = await databaseFactory.openDatabase(dbPath);
                     await db.execute(
-                        "CREATE TABLE IF NOT EXISTS jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, position TEXT, jobPost TEXT, salary TEXT, description TEXT, companyName TEXT, address TEXT, website TEXT, business TEXT, appliedDate TEXT)");
+                        "CREATE TABLE IF NOT EXISTS jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, position TEXT, jobPost TEXT, salary TEXT, description TEXT, companyName TEXT, address TEXT, website TEXT, business TEXT, appliedDate TEXT, status TEXT)");
+                    print("The job is ${job.toJson()}");
                     await db.insert("jobs", job.toJson());
                     await db.close();
                     resetTextInputs();
