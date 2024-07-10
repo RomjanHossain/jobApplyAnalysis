@@ -9,6 +9,44 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
+  DateTime? selected;
+
+  late TextEditingController _positionController;
+  late TextEditingController _jobPostController;
+  late TextEditingController _salaryController;
+  late TextEditingController _descriptionController;
+  // company info
+  late TextEditingController _companyNameController;
+  late TextEditingController _addressController;
+  late TextEditingController _websiteController;
+  late TextEditingController _businessController;
+  @override
+  void initState() {
+    super.initState();
+
+    _positionController = TextEditingController();
+    _jobPostController = TextEditingController();
+    _salaryController = TextEditingController();
+    _descriptionController = TextEditingController();
+    _companyNameController = TextEditingController();
+    _addressController = TextEditingController();
+    _websiteController = TextEditingController();
+    _businessController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _positionController.dispose();
+    _jobPostController.dispose();
+    _salaryController.dispose();
+    _descriptionController.dispose();
+    _companyNameController.dispose();
+    _addressController.dispose();
+    _websiteController.dispose();
+    _businessController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,22 +62,29 @@ class _HomeBodyState extends State<HomeBody> {
               // position
               InfoLabel(
                 label: 'Position',
-                child: TextBox(),
+                child: TextBox(
+                  controller: _positionController,
+                ),
               ),
               // job post
               InfoLabel(
                 label: 'Job Post Link',
-                child: TextBox(),
+                child: TextBox(
+                  controller: _jobPostController,
+                ),
               ),
               // salary
               InfoLabel(
                 label: 'Salary Range',
-                child: TextBox(),
+                child: TextBox(
+                  controller: _salaryController,
+                ),
               ),
               // description
               InfoLabel(
                 label: 'Description',
                 child: TextBox(
+                  controller: _descriptionController,
                   maxLines: 10,
                 ),
               ),
@@ -50,17 +95,28 @@ class _HomeBodyState extends State<HomeBody> {
               const SizedBox(height: 20),
               InfoLabel(
                 label: 'Company Name',
-                child: TextBox(),
+                child: TextBox(
+                  controller: _companyNameController,
+                ),
               ),
               // address
-              InfoLabel(label: 'Address', child: TextBox()),
+              InfoLabel(
+                  label: 'Address',
+                  child: TextBox(
+                    controller: _addressController,
+                  )),
               // website
-              InfoLabel(label: 'Website', child: TextBox()),
+              InfoLabel(
+                  label: 'Website',
+                  child: TextBox(
+                    controller: _websiteController,
+                  )),
               // business
               InfoLabel(
                   label: 'Business',
                   child: TextBox(
                     maxLines: 5,
+                    controller: _businessController,
                   )),
               Text(
                 "Applied Information",
@@ -70,33 +126,8 @@ class _HomeBodyState extends State<HomeBody> {
               InfoLabel(
                 label: 'Applied Date',
                 child: DatePicker(
-                  selected: null,
-                ),
-              ),
-              // status
-              InfoLabel(
-                label: 'Status',
-                child: ComboBox<String>(
-                  items: [
-                    ComboBoxItem(
-                      value: 'Applied',
-                      child: Text('Applied'),
-                    ),
-                    ComboBoxItem(
-                      value: 'Interview',
-                      child: Text('Interview'),
-                    ),
-                    ComboBoxItem(
-                      value: 'Offer',
-                      child: Text('Offer'),
-                    ),
-                    ComboBoxItem(
-                      value: 'Rejected',
-                      child: Text('Rejected'),
-                    ),
-                  ],
-                  onChanged: (value) {},
-                  placeholder: Text("Select Status"),
+                  selected: selected,
+                  onChanged: (time) => setState(() => selected = time),
                 ),
               ),
             ],
@@ -104,8 +135,20 @@ class _HomeBodyState extends State<HomeBody> {
           Align(
             alignment: Alignment.bottomRight,
             child: FloatingActionButton.extended(
+              backgroundColor: FluentTheme.of(context).micaBackgroundColor,
               label: const Text('Save'),
-              onPressed: () {},
+              onPressed: () {
+                // printing all the text
+                print("Position: ${_positionController.text}");
+                print("Job Post: ${_jobPostController.text}");
+                print("Salary: ${_salaryController.text}");
+                print("Description: ${_descriptionController.text}");
+                print("Company Name: ${_companyNameController.text}");
+                print("Address: ${_addressController.text}");
+                print("Website: ${_websiteController.text}");
+                print("Business: ${_businessController.text}");
+                print("Applied Date: $selected");
+              },
             ),
           ),
         ],
