@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:joblookup/pages/home/home_form_page.dart';
+import 'package:joblookup/pages/views/view_database.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart' as flutter_acrylic;
@@ -103,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
           PaneItem(
             title: const Text("View"),
             icon: const Icon(Icons.view_list),
-            body: const Text("View the list"),
+            body: const ViewTheDatabase(),
           ),
         ],
       ),

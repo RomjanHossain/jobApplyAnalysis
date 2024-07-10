@@ -229,7 +229,7 @@ class _HomeBodyState extends State<HomeBody> {
                       isLoading = true;
                     });
                     var databaseFactory = databaseFactoryFfi;
-                    final Directory appDocumentsDir =
+                    final appDocumentsDir =
                         await getApplicationDocumentsDirectory();
                     String dbPath =
                         p.join(appDocumentsDir.path, "jobDatabase", "job.db");
@@ -240,8 +240,9 @@ class _HomeBodyState extends State<HomeBody> {
                     final db = await databaseFactory.openDatabase(dbPath);
                     await db.execute(
                         "CREATE TABLE IF NOT EXISTS jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, position TEXT, jobPost TEXT, salary TEXT, description TEXT, companyName TEXT, address TEXT, website TEXT, business TEXT, appliedDate TEXT)");
-                    await db.insert("jobs", job.toMap());
+                    await db.insert("jobs", job.toJson());
                     await db.close();
+                    resetTextInputs();
                     setState(() {
                       isLoading = false;
                     });
