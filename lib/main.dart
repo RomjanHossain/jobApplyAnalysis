@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:joblookup/pages/graph/view_db_graph.dart';
 import 'package:joblookup/pages/home/home_form_page.dart';
 import 'package:joblookup/pages/views/view_database.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
@@ -42,7 +43,7 @@ void main() async {
         TitleBarStyle.hidden,
         windowButtonVisibility: false,
       );
-      await windowManager.setMinimumSize(const Size(500, 600));
+      await windowManager.setMinimumSize(const Size(812, 600));
       await windowManager.show();
       await windowManager.setPreventClose(true);
       await windowManager.setSkipTaskbar(false);
@@ -105,6 +106,11 @@ class _MyHomePageState extends State<MyHomePage> {
             title: const Text("View"),
             icon: const Icon(Icons.view_list),
             body: const ViewTheDatabase(),
+          ),
+          PaneItem(
+            title: const Text("Graph"),
+            icon: const Icon(Icons.graphic_eq),
+            body: const ViewTheDatabaseGraph(),
           ),
         ],
       ),
