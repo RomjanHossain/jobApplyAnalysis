@@ -82,13 +82,14 @@ class _ViewTheDatabaseGraphState extends State<ViewTheDatabaseGraph> {
             style: FluentTheme.of(context).typography.title,
             textAlign: TextAlign.center,
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-            child: LineChatCustom(jobCountsByMonth: jobCountsByMonth),
-          ),
+          if (jobs.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+              child: LineChatCustom(jobCountsByMonth: jobCountsByMonth),
+            ),
           Text(
             "Status Pie Chart",
             textAlign: TextAlign.center,
