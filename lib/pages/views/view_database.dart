@@ -78,7 +78,7 @@ class _ViewTheDatabaseState extends State<ViewTheDatabase> {
             style: FluentTheme.of(context).typography.title,
             textAlign: TextAlign.center,
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           m.DataTable(

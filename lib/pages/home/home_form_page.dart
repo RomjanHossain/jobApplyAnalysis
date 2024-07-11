@@ -233,7 +233,6 @@ class _HomeBodyState extends State<HomeBody> {
                     final db = await databaseFactory.openDatabase(dbPath);
                     await db.execute(
                         "CREATE TABLE IF NOT EXISTS jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, position TEXT, jobPost TEXT, salary TEXT, description TEXT, companyName TEXT, address TEXT, website TEXT, business TEXT, appliedDate TEXT, status TEXT)");
-                    print("The job is ${job.toJson()}");
                     await db.insert("jobs", job.toJson());
                     await db.close();
                     resetTextInputs();
