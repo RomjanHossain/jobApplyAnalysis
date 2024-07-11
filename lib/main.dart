@@ -59,7 +59,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FluentApp(
-      title: 'Flutter Demo',
+      title: 'Job Lookup',
+      debugShowCheckedModeBanner: false,
       darkTheme: FluentThemeData(
         brightness: Brightness.dark,
         visualDensity: VisualDensity.standard,
@@ -89,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return NavigationView(
       appBar: const NavigationAppBar(
-        title: Text('Flutter Demo Home Page'),
+        title: Text('Job Lookups and Graphs'),
         automaticallyImplyLeading: false,
       ),
       pane: NavigationPane(
